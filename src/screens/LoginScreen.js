@@ -1,23 +1,32 @@
 import React from "react";
-import { SafeAreaView, Text, View } from "react-native";
+import { SafeAreaView, Text, TouchableOpacity, View } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
-import styles from "../styles/loginScreenStyle";
+import style from "../styles/loginScreenStyle";
 
 const LoginScreen = () => {
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.view}>
-        <Text style={styles.textHeading}>Login Here</Text>
-        <TextInput
-          placeholder="Username or Email"
-          keyboardType={"email-address"}
-          style={styles.inputfield}
-        />
-        <TextInput
-          placeholder="Password"
-          secureTextEntry={true}
-          style={styles.inputfield}
-        />
+    <SafeAreaView style={style.container}>
+      <View>
+        <View style={style.logInTextView}>
+          <Text style={style.LoginText}>Login </Text>
+        </View>
+        <View style={style.formView}>
+          <Text style={style.labelTextStyle}>Email And UserName</Text>
+          <TextInput
+            placeholder="Username or Email"
+            keyboardType={"email-address"}
+            style={style.textInputStyle}
+          />
+          <Text style={style.labelTextStyle}>Password</Text>
+          <TextInput
+            placeholder="Password"
+            secureTextEntry={true}
+            style={style.textInputStyle}
+          />
+          <TouchableOpacity style={style.logInButton}>
+            <Text>Sing Up</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </SafeAreaView>
   );
