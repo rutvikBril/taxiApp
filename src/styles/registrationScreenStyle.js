@@ -6,7 +6,8 @@ const style = StyleSheet.create({
   },
 
   singUpTextView: {
-    margin: 20,
+    margin: 50,
+    marginLeft: 20,
   },
   singUpText: {
     fontSize: 30,
