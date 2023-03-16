@@ -3,12 +3,14 @@ import { StyleSheet } from "react-native";
 const style = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: "center",
   },
 
-  singUpTextView: {
-    margin: 20,
+  logInTextView: {
+    marginTop: 50,
+    marginLeft: 20,
   },
-  singUpText: {
+  LoginText: {
     fontSize: 30,
     fontWeight: "bold",
     color: "#00000",
@@ -28,7 +30,7 @@ const style = StyleSheet.create({
     borderBottomWidth: 2,
     borderBottomColor: "#f5ad00",
   },
-  singUpButton: {
+  logInButton: {
     alignItems: "center",
     marginTop: "20%",
     margin: 20,
