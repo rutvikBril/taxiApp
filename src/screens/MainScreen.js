@@ -39,6 +39,16 @@ const HomeScreen = () => {
         <MapView style={style.map} region={mapRegion}>
           <Marker coordinate={mapRegion} title="Marker" />
         </MapView>
+import React from 'react';
+import { SafeAreaView, Text } from 'react-native';
+
+import { View } from 'react-native';
+
+const HomeScreen = () => {
+  return (
+    <SafeAreaView>
+      <View>
+        <Text>MainScreen</Text>
       </View>
     </SafeAreaView>
   );
@@ -55,3 +65,4 @@ const style = StyleSheet.create({
     height: "100%",
   },
 });
+
