@@ -6,10 +6,12 @@ const style = StyleSheet.create({
   },
 
   singUpTextView: {
-    margin: 20,
+    marginTop: 50,
+    marginLeft: 20,
   },
   singUpText: {
     fontSize: 30,
+    fontWeight: "bold",
     fontWeight: 'bold',
     color: '#00000',
   },
@@ -22,8 +24,9 @@ const style = StyleSheet.create({
     color: '#000',
   },
   textInputStyle: {
-    paddingVertical: 10,
+    paddingVertical: 2,
     marginRight: 30,
+
     color: '#000',
     borderBottomWidth: 2,
     borderBottomColor: '#f5ad00',

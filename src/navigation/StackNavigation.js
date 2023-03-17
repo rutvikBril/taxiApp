@@ -10,7 +10,7 @@ const Stack = createStackNavigator();
 
 function StackNavigation() {
   return (
-    <Stack.Navigator initialRouteName="StartScreen">
+    <Stack.Navigator initialRouteName="Home">
       <Stack.Screen
         name="StartScreen"
         component={StartScreen}

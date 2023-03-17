@@ -21,11 +21,13 @@ const style = StyleSheet.create({
   labelTextStyle: {
     marginTop: 20,
     fontSize: 15,
+
     color: '#000',
   },
   textInputStyle: {
     paddingVertical: 10,
     marginRight: 30,
+
     color: '#000',
     borderBottomWidth: 2,
     borderBottomColor: '#f5ad00',
@@ -34,10 +36,19 @@ const style = StyleSheet.create({
     alignItems: 'center',
     marginTop: '20%',
     margin: 20,
+    marginRight: 35,
     paddingHorizontal: 30,
     paddingVertical: 20,
     borderRadius: 20,
     backgroundColor: '#f5ad00',
+  },
+  alreadyAccountViewContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    marginTop: 10,
+  },
+  alreadyAccountViewContainerText: {
+    fontWeight: "bold",
   },
 });
 export default style;

@@ -1,6 +1,15 @@
 import React from "react";
-import { SafeAreaView, Text, View } from "react-native";
+import { SafeAreaView, Text, TouchableOpacity, View } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
+import style from "../styles/loginScreenStyle";
+import { useNavigation } from "@react-navigation/native";
+
+const LoginScreen = () => {
+  const navigation = useNavigation();
+  const onPressForgotPassword = () => {
+    navigation.navigate("ForgotPassword");
+  };
+  return (
 import styles from "../styles/loginScreenStyle";
 import React, { useState } from 'react';
 import {
@@ -63,6 +72,8 @@ const LoginScreen = () => {
           <Text style={style.labelTextStyle}>Email or UserName</Text>
           <TextInput
             placeholder="Username or Email"
+            keyboardType={"email-address"}
+            style={style.textInputStyle}
             keyboardType={'email-address'}
             style={style.textInputStyle}
             value={email}
@@ -73,6 +84,17 @@ const LoginScreen = () => {
             placeholder="Password"
             secureTextEntry={true}
             style={style.textInputStyle}
+          />
+          <TouchableOpacity style={style.logInButton}>
+            <Text>Sing In</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => onPressForgotPassword()}>
+            <View style={style.alreadyAccountViewContainer}>
+              <Text style={style.alreadyAccountViewContainerText}>
+                {" "}
+                Forgot Pasword ?{" "}
+              </Text>
+            </View>
             value={password}
             onChangeText={(text) => setPassword(text)}
           />
