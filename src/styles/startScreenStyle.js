@@ -29,7 +29,6 @@ const style = StyleSheet.create({
     backgroundColor: "#f5ad00",
   },
   getStartButtonText: {
-    color: "#000000",
     fontWeight: "bold",
   },
   alreadyAccountViewContainer: {
@@ -38,7 +37,6 @@ const style = StyleSheet.create({
     bottom: 30,
   },
   alreadyAccountViewContainerText: {
-    color: "#000000",
     fontWeight: "bold",
   },
   loginButtonText: {

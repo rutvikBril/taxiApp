@@ -6,12 +6,12 @@ const style = StyleSheet.create({
   },
 
   singUpTextView: {
-    margin: 20,
+    marginTop: 50,
+    marginLeft: 20,
   },
   singUpText: {
     fontSize: 30,
     fontWeight: "bold",
-    color: "#00000",
   },
   formView: {
     margin: 20,
@@ -19,12 +19,10 @@ const style = StyleSheet.create({
   labelTextStyle: {
     marginTop: 20,
     fontSize: 15,
-    color: "#000000",
   },
   textInputStyle: {
-    paddingVertical: 10,
+    paddingVertical: 2,
     marginRight: 30,
-    color: "#000000",
     borderBottomWidth: 2,
     borderBottomColor: "#f5ad00",
   },
