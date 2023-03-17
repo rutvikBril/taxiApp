@@ -7,43 +7,39 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   ScrollView,
+  Alert,
 } from 'react-native';
 import style from '../styles/registrationScreenStyle';
+import { useNavigation } from '@react-navigation/native';
+import firebase from '../../firbaseConfig';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
 const RegistrationScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [userName, setUserName] = useState('');
   const [mobile, setMobile] = useState('');
-  // registerUser = () => {
-  //   if (email === '' && password === '') {
-  //     Alert.alert('Enter details to signup!');
-  //   } else {
-  //     ({
-  //       isLoading: true,
-  //     });
-  //     firebase
-  //       .auth()
-  //       .createUserWithEmailAndPassword(email, password)
-  //       .then((res) => {
-  //         console.log('User registered successfully!');
-  //         setEmail({
-  //           isLoading: false,
-  //           email: '',
-  //         });
-  //         setPassword({
-  //           isLoading: false,
-  //           password: '',
-  //         });
-  //         setUserName({
-  //           isLoading: false,
-  //           userName: '',
-  //         });
-  //         this.props.navigation.navigate('Login');
-  //       })
-  //       .catch((error) => this.setState({ errorMessage: error.message }));
-  //   }
-  // };
+
+  const navigation = useNavigation();
+
+  const auth = getAuth();
+  const userRegistration = () => {
+    if (email === '' && password === '') {
+      Alert.alert('Enter details to signup!');
+    } else {
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((res) => {
+          setEmail({ email: '' });
+          setPassword({ password: '' });
+          navigation.navigate('LoginScreen');
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+        });
+    }
+  };
+
   return (
     <SafeAreaView style={style.container}>
       <KeyboardAvoidingView style={style.container}>
@@ -85,7 +81,7 @@ const RegistrationScreen = () => {
               />
               <TouchableOpacity
                 style={style.singUpButton}
-                onPress={() => registerUser()}
+                onPress={() => userRegistration()}
               >
                 <Text>Sing Up</Text>
               </TouchableOpacity>
