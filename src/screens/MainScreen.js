@@ -55,6 +55,16 @@ const HomeScreen = () => {
             }}
           />
         </MapView>
+import React from 'react';
+import { SafeAreaView, Text } from 'react-native';
+
+import { View } from 'react-native';
+
+const HomeScreen = () => {
+  return (
+    <SafeAreaView>
+      <View>
+        <Text>MainScreen</Text>
       </View>
     </SafeAreaView>
   );
@@ -77,3 +87,4 @@ const style = StyleSheet.create({
     backgroundColor: "#ecf0f1",
   },
 });
+
