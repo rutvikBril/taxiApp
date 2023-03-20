@@ -4,11 +4,13 @@ import { SafeAreaView, StyleSheet } from "react-native";
 import { View } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
+import Constants from "expo-constants";
+import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 
 const HomeScreen = () => {
   const [mapRegion, setMapRegion] = useState({
-    latitude: 37.76625,
-    longitude: -122.4324,
+    latitude: 20.5937,
+    longitude: 78.9629,
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
   });
@@ -27,17 +29,31 @@ const HomeScreen = () => {
       longitudeDelta: 0.0421,
     });
   };
-  let i = 1;
   useEffect(() => {
     const interval = setInterval(() => {
       userLocation();
-    }, 5000);
+    }, 4000);
   }, []);
+
+  const GOOGLE_PLACES_API_KEY = "AIzaSyCFCozWRqehqsFbbe4mAAz2yw4IlJsnOEw";
   return (
     <SafeAreaView style={style.container}>
-      <View>
+      <View style={style.container2}>
         <MapView style={style.map} region={mapRegion}>
           <Marker coordinate={mapRegion} title="Marker" />
+          <GooglePlacesAutocomplete
+            placeholder="Search"
+            query={{
+              key: GOOGLE_PLACES_API_KEY,
+              language: "en",
+            }}
+            onPress={(data, details = null) => console.log(data)}
+            onFail={(error) => console.error(error)}
+            requestUrl={{
+              url: "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api",
+              useOnPlatform: "web",
+            }}
+          />
         </MapView>
       </View>
     </SafeAreaView>
@@ -53,5 +69,11 @@ const style = StyleSheet.create({
   map: {
     width: "100%",
     height: "100%",
+  },
+  container2: {
+    flex: 1,
+    padding: 10,
+    paddingTop: Constants.statusBarHeight + 10,
+    backgroundColor: "#ecf0f1",
   },
 });
