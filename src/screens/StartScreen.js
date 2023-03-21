@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
 
 import {
   ImageBackground,
@@ -6,30 +6,37 @@ import {
   Text,
   TouchableOpacity,
   View,
-} from "react-native";
-import style from "../styles/startScreenStyle";
-import { useNavigation } from "@react-navigation/native";
+} from 'react-native';
+import style from '../styles/startScreenStyle';
+import { useNavigation } from '@react-navigation/native';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 const StartScreen = () => {
+  const [animating, setAnimating] = useState(true);
+
   const navigation = useNavigation();
+
+  const auth = getAuth();
+  const user = auth.currentUser;
+
   const onPressLogin = () => {
-    navigation.navigate("LoginScreen");
+    navigation.navigate('LoginScreen');
   };
   const onPressStart = () => {
-    navigation.navigate("Registration");
+    navigation.navigate('Registration');
   };
 
   return (
     <View style={style.container}>
       <ImageBackground
-        source={require("../img/firstScreenImage.png")}
+        source={require('../img/firstScreenImage.png')}
         style={style.backGroundImageStyle}
         resizeMode="contain"
       >
         <View style={style.welcomeTextView}>
           <Text style={style.welcomeText}>
             Welcome to
-            {"\n"}Smart Taxi
+            {'\n'}Smart Taxi
           </Text>
         </View>
         <View>

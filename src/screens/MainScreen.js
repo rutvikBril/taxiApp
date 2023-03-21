@@ -24,6 +24,7 @@ const INITIAL_POSITION = {
 };
 
 const HomeScreen = () => {
+  const auth = getAuth();
   const [mapRegion, setMapRegion] = useState({
     latitude: 23.033863,
     longitude: 72.585022,
@@ -35,11 +36,12 @@ const HomeScreen = () => {
     longitude: 72.546,
     latitudeDelta: LATITUDE_DELTA,
     longitudeDelta: LONGITUDE_DELTA,
+
   });
   const userLocation = async () => {
     let { status } = await Location.requestForegroundPermissionsAsync();
-    if (status !== "granted") {
-      setErrorMsg("Permission to access location was denied");
+    if (status !== 'granted') {
+      setErrorMsg('Permission to access location was denied');
     }
     let location = await Location.getCurrentPositionAsync({
       enabledHighAccuracy: true,
@@ -62,7 +64,19 @@ const HomeScreen = () => {
   //     },
   //   },
   // };
+function googleSignout() {
+    auth
+      .signOut()
 
+      .then(
+        function () {
+          console.log('Signout Succesfull');
+        },
+        function (error) {
+          console.log('Signout Failed');
+        }
+      );
+  }
   useEffect(() => {
     const interval = setInterval(() => {
       userLocation();
@@ -134,9 +148,11 @@ const HomeScreen = () => {
           enablePoweredByContainer={false}
           styles={{ textInput: style.inputSearch }}
         />
+         <View>
+        <TouchableOpacity onPress={() => googleSignout()}>
+          <Text>Log Out</Text>
+        </TouchableOpacity>
       </View>
-    </View>
-  );
-};
 
+ 
 export default HomeScreen;

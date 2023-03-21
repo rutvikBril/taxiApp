@@ -13,7 +13,7 @@ const style = StyleSheet.create({
   LoginText: {
     fontSize: 30,
     fontWeight: 'bold',
-    color: '#00000',
+    color: '#000000',
   },
   formView: {
     margin: 20,
@@ -43,12 +43,12 @@ const style = StyleSheet.create({
     backgroundColor: '#f5ad00',
   },
   alreadyAccountViewContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
+    flexDirection: 'row',
+    justifyContent: 'center',
     marginTop: 10,
   },
   alreadyAccountViewContainerText: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
 });
 export default style;
