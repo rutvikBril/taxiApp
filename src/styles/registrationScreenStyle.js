@@ -11,7 +11,7 @@ const style = StyleSheet.create({
   },
   singUpText: {
     fontSize: 30,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     fontWeight: 'bold',
     color: '#00000',
   },
