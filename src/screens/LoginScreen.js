@@ -1,46 +1,34 @@
-import React from "react";
-import { SafeAreaView, Text, TouchableOpacity, View } from "react-native";
-import { TextInput } from "react-native-gesture-handler";
-import style from "../styles/loginScreenStyle";
-import { useNavigation } from "@react-navigation/native";
-
-const LoginScreen = () => {
-  const navigation = useNavigation();
-  const onPressForgotPassword = () => {
-    navigation.navigate("ForgotPassword");
-  };
-  return (
 import styles from "../styles/loginScreenStyle";
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Alert,
   SafeAreaView,
   Text,
   TouchableOpacity,
   View,
-} from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
-import style from '../styles/loginScreenStyle';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { useNavigation } from '@react-navigation/native';
+} from "react-native";
+import { TextInput } from "react-native-gesture-handler";
+import style from "../styles/loginScreenStyle";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { useNavigation } from "@react-navigation/native";
 
 const LoginScreen = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const navigation = useNavigation();
 
   const auth = getAuth();
 
   const onPressLogin = () => {
-    if (email === '' && password === '') {
-      Alert.alert('Enter details to signin!');
+    if (email === "" && password === "") {
+      Alert.alert("Enter details to signin!");
     } else {
       signInWithEmailAndPassword(auth, email, password)
         .then(() => {
-          setEmail({ email: '' });
-          setPassword({ password: '' });
-          navigation.navigate('Home');
+          setEmail({ email: "" });
+          setPassword({ password: "" });
+          navigation.navigate("Home");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -50,19 +38,6 @@ const LoginScreen = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.view}>
-        <Text style={styles.textHeading}>Login Here</Text>
-        <TextInput
-          placeholder="Username or Email"
-          keyboardType={"email-address"}
-          style={styles.inputfield}
-        />
-        <TextInput
-          placeholder="Password"
-          secureTextEntry={true}
-          style={styles.inputfield}
-        />
     <SafeAreaView style={style.container}>
       <View>
         <View style={style.logInTextView}>
@@ -73,8 +48,6 @@ const LoginScreen = () => {
           <TextInput
             placeholder="Username or Email"
             keyboardType={"email-address"}
-            style={style.textInputStyle}
-            keyboardType={'email-address'}
             style={style.textInputStyle}
             value={email}
             onChangeText={(text) => setEmail(text)}
@@ -97,7 +70,7 @@ const LoginScreen = () => {
             </View>
             value={password}
             onChangeText={(text) => setPassword(text)}
-          />
+          </TouchableOpacity>
           <TouchableOpacity
             style={style.logInButton}
             onPress={() => onPressLogin()}
