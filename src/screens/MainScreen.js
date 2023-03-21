@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { SafeAreaView, StyleSheet, Text, TouchableOpacity } from 'react-native';
-import style from '../styles/mainScreenStyle';
-import { View } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
-import * as Location from 'expo-location';
-import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
+import React, { useEffect, useState } from "react";
+import { SafeAreaView, StyleSheet, Text, TouchableOpacity } from "react-native";
+import style from "../styles/mainScreenStyle";
+import { View } from "react-native";
+import MapView, { Marker } from "react-native-maps";
+import * as Location from "expo-location";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 
 const HomeScreen = () => {
   const auth = getAuth();
@@ -16,8 +16,8 @@ const HomeScreen = () => {
   });
   const userLocation = async () => {
     let { status } = await Location.requestForegroundPermissionsAsync();
-    if (status !== 'granted') {
-      setErrorMsg('Permission to access location was denied');
+    if (status !== "granted") {
+      setErrorMsg("Permission to access location was denied");
     }
     let location = await Location.getCurrentPositionAsync({
       enabledHighAccuracy: true,
@@ -29,7 +29,6 @@ const HomeScreen = () => {
       longitudeDelta: 0.0421,
     });
   };
-  let i = 1;
 
   function googleSignout() {
     auth
@@ -37,17 +36,17 @@ const HomeScreen = () => {
 
       .then(
         function () {
-          console.log('Signout Succesfull');
+          console.log("Signout Succesfull");
         },
         function (error) {
-          console.log('Signout Failed');
+          console.log("Signout Failed");
         }
       );
   }
   useEffect(() => {
     const interval = setInterval(() => {
       userLocation();
-      console.log('currentUser', auth.currentUser);
+      console.log("currentUser", auth.currentUser);
       return interval;
     }, 5000);
   }, []);
@@ -55,14 +54,8 @@ const HomeScreen = () => {
   return (
     <SafeAreaView style={style.container}>
       <View>
-        <MapView
-          style={style.map}
-          region={mapRegion}
-        >
-          <Marker
-            coordinate={mapRegion}
-            title="Marker"
-          />
+        <MapView style={style.map} region={mapRegion}>
+          <Marker coordinate={mapRegion} title="Marker" />
         </MapView>
       </View>
       <View>
