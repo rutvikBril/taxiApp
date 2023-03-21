@@ -32,14 +32,12 @@ function StackNavigation() {
         component={RegistrationScreen}
         options={{ headerShown: false }}
       />
-      <Stack.Screen
-        name="ForgotPassword"
-        component={ForgetScreen}
-      />
+      <Stack.Screen name="ForgotPassword" component={ForgetScreen} />
       <Stack.Screen
         name="Home"
         component={HomeScreen}
-      />
+        options={{ headerShown: false }}
+
     </Stack.Navigator>
   );
 }
