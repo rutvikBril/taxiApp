@@ -1,18 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { Dimensions, SafeAreaView, StyleSheet } from "react-native";
+import React, { useEffect, useState } from 'react';
+import { Dimensions, TouchableOpacity } from 'react-native';
 
-import { View, Text } from "react-native";
-import MapView, {
-  PROVIDER_GOOGLE,
-  Callout,
-  Circle,
-  Marker,
-} from "react-native-maps";
-import * as Location from "expo-location";
-import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
-import style from "../styles/homeScreenStyle";
+import { View, Text } from 'react-native';
+import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
+import * as Location from 'expo-location';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import style from '../styles/homeScreenStyle';
+import { getAuth } from 'firebase/auth';
 
-const { width, height } = Dimensions.get("window");
+const { width, height } = Dimensions.get('window');
 const ASPECT_RATIO = width / height;
 const LATITUDE_DELTA = 0.02;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
@@ -22,9 +18,28 @@ const INITIAL_POSITION = {
   latitudeDelta: LATITUDE_DELTA,
   longitudeDelta: LONGITUDE_DELTA,
 };
+//to use current location
+
+navigator.geolocation = require('expo-location');
+
+//for Home Location
+
+const homePlace = {
+  description: 'Home',
+  geometry: { location: { lat: 23.0461, lng: 72.6366 } },
+};
+
+//for Office Location
+
+const workPlace = {
+  description: 'Work',
+  geometry: { location: { lat: 23.0802, lng: 72.4952 } },
+};
+//main Home function
 
 const HomeScreen = () => {
   const auth = getAuth();
+
   const [mapRegion, setMapRegion] = useState({
     latitude: 23.033863,
     longitude: 72.585022,
@@ -36,7 +51,6 @@ const HomeScreen = () => {
     longitude: 72.546,
     latitudeDelta: LATITUDE_DELTA,
     longitudeDelta: LONGITUDE_DELTA,
-
   });
   const userLocation = async () => {
     let { status } = await Location.requestForegroundPermissionsAsync();
@@ -56,7 +70,7 @@ const HomeScreen = () => {
   };
 
   // const currentLocation = {
-  //   description: "Current Location",
+  //   description: 'Current Location',
   //   geometry: {
   //     location: {
   //       lat: mapRegion.latitude,
@@ -64,7 +78,8 @@ const HomeScreen = () => {
   //     },
   //   },
   // };
-function googleSignout() {
+
+  function googleSignout() {
     auth
       .signOut()
 
@@ -78,13 +93,14 @@ function googleSignout() {
       );
   }
   useEffect(() => {
+    // currentLocation;
     const interval = setInterval(() => {
       userLocation();
-      // currentLocation;
     }, 4000);
+    return interval;
   }, []);
 
-  const GOOGLE_PLACES_API_KEY = "AIzaSyD1tKpEXpLgh4ORN6GrX_cjCycgwlbswMg";
+  const GOOGLE_PLACES_API_KEY = 'AIzaSyD1tKpEXpLgh4ORN6GrX_cjCycgwlbswMg';
 
   return (
     <View tyle={style.container2}>
@@ -117,18 +133,17 @@ function googleSignout() {
       </MapView>
       <View style={style.searchContainer}>
         <GooglePlacesAutocomplete
-          // predefinedPlaces={[currentLocation]}
           placeholder="Search"
           fetchDetails={true}
           autoFocus={true}
           GooglePlacesSearchQuery={{
-            rankby: "distance",
+            rankby: 'distance',
           }}
           query={{
             key: GOOGLE_PLACES_API_KEY,
-            language: "en",
-            components: "country:in",
-            types: "establishment",
+            language: 'en',
+            components: 'country:in',
+            types: 'establishment',
             radius: 3000,
             location: `${mapRegion.latitude}, ${mapRegion.longitude}`,
           }}
@@ -140,19 +155,24 @@ function googleSignout() {
               longitudeDelta: LONGITUDE_DELTA,
             });
           }}
+          currentLocation={true}
+          currentLocationLabel="current location"
           onFail={(error) => console.error(error)}
           requestUrl={{
-            url: "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api",
-            useOnPlatform: "web",
+            url: 'https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api',
+            useOnPlatform: 'web',
           }}
           enablePoweredByContainer={false}
           styles={{ textInput: style.inputSearch }}
+          predefinedPlaces={[homePlace, workPlace]}
         />
-         <View>
-        <TouchableOpacity onPress={() => googleSignout()}>
-          <Text>Log Out</Text>
-        </TouchableOpacity>
+        <View>
+          <TouchableOpacity onPress={() => googleSignout()}>
+            <Text>Log Out</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-
- 
+    </View>
+  );
+};
 export default HomeScreen;

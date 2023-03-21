@@ -1,5 +1,3 @@
-
-
 import React, { useEffect, useState } from 'react';
 import {
   Alert,
@@ -7,26 +5,11 @@ import {
   Text,
   TouchableOpacity,
   View,
-} from "react-native";
-import { TextInput } from "react-native-gesture-handler";
-import style from "../styles/loginScreenStyle";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { useNavigation } from "@react-navigation/native";
-
-const LoginScreen = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  TextInput,
 } from 'react-native';
+import { TextInput } from 'react-native-gesture-handler';
 import style from '../styles/loginScreenStyle';
-
-import {
-  getAuth,
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-} from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigation } from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
@@ -38,14 +21,14 @@ const LoginScreen = () => {
   const auth = getAuth();
 
   const onPressLogin = () => {
-    if (email === "" && password === "") {
-      Alert.alert("Enter details to signin!");
+    if (email === '' && password === '') {
+      Alert.alert('Enter details to signin!');
     } else {
       signInWithEmailAndPassword(auth, email, password)
         .then(() => {
-          setEmail({ email: "" });
-          setPassword({ password: "" });
-          navigation.navigate("Home");
+          setEmail({ email: '' });
+          setPassword({ password: '' });
+          navigation.navigate('Home');
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -64,7 +47,6 @@ const LoginScreen = () => {
           <Text style={style.labelTextStyle}>Email or UserName</Text>
           <TextInput
             placeholder="Username or Email"
-
             keyboardType={'email-address'}
             style={style.textInputStyle}
             value={email}
@@ -76,7 +58,7 @@ const LoginScreen = () => {
             secureTextEntry={true}
             style={style.textInputStyle}
             onChangeText={(text) => setPassword(text)}
-          </TouchableOpacity>
+          />
           <TouchableOpacity
             style={style.logInButton}
             onPress={() => onPressLogin()}

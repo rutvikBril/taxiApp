@@ -6,12 +6,11 @@ import HomeScreen from '../screens/MainScreen';
 import RegistrationScreen from '../screens/RegistrationScreen';
 import StartScreen from '../screens/StartScreen';
 import SplashScreen from '../screens/SplashScreen';
-
 const Stack = createStackNavigator();
 
 function StackNavigation() {
   return (
-    <Stack.Navigator initialRouteName="SplashScreen">
+    <Stack.Navigator initialRouteName="Home">
       <Stack.Screen
         name="SplashScreen"
         component={SplashScreen}
@@ -32,12 +31,15 @@ function StackNavigation() {
         component={RegistrationScreen}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name="ForgotPassword" component={ForgetScreen} />
+      <Stack.Screen
+        name="ForgotPassword"
+        component={ForgetScreen}
+      />
       <Stack.Screen
         name="Home"
         component={HomeScreen}
         options={{ headerShown: false }}
-
+      />
     </Stack.Navigator>
   );
 }
