@@ -1,12 +1,11 @@
-import {useEffect, useRef} from 'react';
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
 import style from '../styles/homeScreenStyle';
+import {useState} from 'react';
 
-const GOOGLE_PLACES_API_KEY = 'AIzaSyD1tKpEXpLgh4ORN6GrX_cjCycgwlbswMg';
-const GooglePlacesInput = () => {
-  //   const ref = useRef();
-  const getAddress = () => {
-    // console.log(ref.current?.getAddressText());
+function GooglePlacesInput() {
+  const [pickUpPointMarker, setPickUpPointMarker] = useState();
+  const handleSetPickUpMarker = e => {
+    setPickUpPointMarker(e);
   };
   return (
     <GooglePlacesAutocomplete
@@ -16,19 +15,20 @@ const GooglePlacesInput = () => {
         components: 'country:in',
       }}
       placeholder="Search"
+      listUnderlayColor="red"
       onPress={(data, details) => {
-        console.log(data, details);
+        handleSetPickUpMarker(JSON.stringify(details?.geometry?.location));
       }}
       onFail={error => console.log(error)}
       onNotFound={() => console.log('no results')}
       fetchDetails={true}
       currentLocation={true}
-      currentLocationLabel="Current location"
+      currentLocationLabel="Current Location"
       enableHighAccuracyLocation
       enablePoweredByContainer={false}
       styles={{textInput: style.inputSearch}}
     />
   );
-};
+}
 
 export default GooglePlacesInput;

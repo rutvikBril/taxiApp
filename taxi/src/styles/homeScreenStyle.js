@@ -17,6 +17,8 @@ const style = StyleSheet.create({
     alignItems: 'center',
   },
   searchContainer: {
+    zIndex: 2,
+    marginTop: '20%',
     alignSelf: 'center',
     position: 'absolute',
     width: '90%',
@@ -32,6 +34,7 @@ const style = StyleSheet.create({
   inputSearch: {
     borderColor: '#888',
     borderWidth: 1,
+    color: 'black',
   },
 });
 
