@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>496905697994-767lh4gbn71hve68ca33eos4njajvgs0.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.496905697994-767lh4gbn71hve68ca33eos4njajvgs0</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>496905697994-e0g2re1qruee5d5ilgoikvgi8jgevglj.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBXIeEXzvH3Gl9ItpQFMLRyjk4dBcizgPI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>496905697994</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.reactjs.native.example.taxi</string>
+	<key>PROJECT_ID</key>
+	<string>newtaxiapp-33a14</string>
+	<key>STORAGE_BUCKET</key>
+	<string>newtaxiapp-33a14.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:496905697994:ios:d4800a03c5504bad0c5233</string>
+</dict>
+</plist>

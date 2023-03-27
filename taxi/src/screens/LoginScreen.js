@@ -7,10 +7,12 @@ import {
   View,
   TextInput,
 } from 'react-native';
-import {getAuth, signInWithEmailAndPassword} from 'firebase/auth';
+// import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import auth from '@react-native-firebase/auth';
+
 import {useNavigation} from '@react-navigation/native';
 import style from '../styles/loginScreenStyle';
-import app from '../../firbaseConfig';
+// import app from '../../firbaseConfig';
 
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -21,20 +23,14 @@ const LoginScreen = () => {
 
   const navigation = useNavigation();
 
-  const auth = getAuth(app);
+  // const auth = getAuth(app);
 
   const onPressLogin = () => {
     if (email === '' && password === '') {
       Alert.alert('Enter details to signin!');
     } else {
-      signInWithEmailAndPassword(auth, email, password)
-        .then(userCredential => {
-          const user = userCredential.user;
-          console.log('user form login: ' + user.email);
-          console.log('email form login: ' + auth.currentUser.email);
-          // storeData();
-          // getData();
-        })
+      auth()
+        .signInWithEmailAndPassword(email, password)
         .then(() => {
           setEmail({email: ''});
           setPassword({password: ''});
@@ -46,25 +42,6 @@ const LoginScreen = () => {
         });
     }
   };
-  // const storeData = async value => {
-  //   try {
-  //     await AsyncStorage.setItem('email', email);
-  //     console.log('email stored: ' + email);
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
-
-  // const getData = async () => {
-  //   try {
-  //     const value = await AsyncStorage.getItem('email');
-  //     if (value !== null) {
-  //       console.log('email retrived: ' + value);
-  //     }
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
 
   return (
     <SafeAreaView style={style.container}>

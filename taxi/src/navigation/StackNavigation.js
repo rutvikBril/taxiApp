@@ -6,6 +6,7 @@ import HomeScreen from '../screens/MainScreen';
 import RegistrationScreen from '../screens/RegistrationScreen';
 import StartScreen from '../screens/StartScreen';
 import SplashScreen from '../screens/SplashScreen';
+import PickUpDropLocation from '../screens/PickUpDropLocation';
 
 const Stack = createStackNavigator();
 
@@ -36,6 +37,11 @@ function StackNavigation() {
       <Stack.Screen
         name="Home"
         component={HomeScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="PickupDrop"
+        component={PickUpDropLocation}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

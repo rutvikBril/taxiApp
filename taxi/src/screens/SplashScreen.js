@@ -8,57 +8,38 @@ import {
   Image,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-
-import {getAuth, onAuthStateChanged} from 'firebase/auth';
-import app from '../../firbaseConfig';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
+// import {getAuth, onAuthStateChanged} from 'firebase/auth';
+// import app from '../../firbaseConfig';
+import auth from '@react-native-firebase/auth';
 
 const SplashScreen = () => {
   const navigation = useNavigation();
 
-  const auth = getAuth(app);
-  const user = auth.currentUser;
+  // const auth = getAuth(app);
 
   //State for ActivityIndicator animation
   const [animating, setAnimating] = useState(true);
+  const [initializing, setInitializing] = useState(true);
+  const [user, setUser] = useState();
 
+  function onAuthStateChanged(user) {
+    setUser(user);
+    if (initializing) setInitializing(false);
+  }
   useEffect(() => {
     setTimeout(() => {
       setAnimating(false);
-
-      onAuthStateChanged(auth, () => {
-        if (user) {
-          console.log('email form splash: ' + user.email);
-          // const uid = user.uid;
-          navigation.navigate('Home');
-          console.log('user already loggen in');
-        } else {
-          navigation.navigate('StartScreen');
-          console.log('user not logged in');
-        }
-      });
-
+      const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
       5000;
+      return subscriber;
     });
-    // getData();
   }, []);
-
-  // const getData = async () => {
-  //   try {
-  //     const value = await AsyncStorage.getItem('email');
-  //     if (value !== null) {
-  //       console.log('email retrived: ' + value);
-  //       navigation.navigate('Home');
-  //       console.log('user already loggen in');
-  //     } else {
-  //       navigation.navigate('StartScreen');
-  //       console.log('user not logged in');
-  //       console.log('no email stored');
-  //     }
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
+  if (initializing) return null;
+  if (!user) {
+    return navigation.navigate('StartScreen');
+  } else {
+    navigation.navigate('Home');
+  }
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: '#f5ad00'}}>
@@ -103,3 +84,15 @@ const styles = StyleSheet.create({
     height: 80,
   },
 });
+
+// onAuthStateChanged(auth, () => {
+//   if (!user) {
+//     console.log('email form splash: ', user.email);
+//     // const uid = user.uid;
+//     navigation.navigate('StartScreen');
+//     console.log(' user not logged in');
+//   } else {
+//     navigation.navigate('Home');
+//     console.log('user already loggen in');
+//   }
+// });

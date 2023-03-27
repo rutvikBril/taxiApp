@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "496905697994",
+    "project_id": "newtaxiapp-33a14",
+    "storage_bucket": "newtaxiapp-33a14.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:496905697994:android:a21bc28e5c7d58550c5233",
+        "android_client_info": {
+          "package_name": "com.taxi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "496905697994-e0g2re1qruee5d5ilgoikvgi8jgevglj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.taxi",
+            "certificate_hash": "b9fdcea92bca6b61884d49221c2350cdc5a6dd9c"
+          }
+        },
+        {
+          "client_id": "496905697994-hmd6mh78e2caralkub5l6thok99bmjkr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVP4Rw9eHRjBQ657_OeVbmhS-OXffYdds"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "496905697994-hmd6mh78e2caralkub5l6thok99bmjkr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

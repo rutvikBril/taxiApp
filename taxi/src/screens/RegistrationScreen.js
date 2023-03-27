@@ -12,7 +12,8 @@ import {
 import style from '../styles/registrationScreenStyle';
 import {useNavigation} from '@react-navigation/native';
 import firebase from '../../firbaseConfig';
-import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth';
+// import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth';
+import auth from '@react-native-firebase/auth';
 
 const RegistrationScreen = () => {
   const [email, setEmail] = useState('');
@@ -22,12 +23,12 @@ const RegistrationScreen = () => {
 
   const navigation = useNavigation();
 
-  const auth = getAuth();
   const userRegistration = () => {
     if (email === '' && password === '') {
       Alert.alert('Enter details to signup!');
     } else {
-      createUserWithEmailAndPassword(auth, email, password)
+      auth()
+        .createUserWithEmailAndPassword(email, password)
         .then(res => {
           setEmail({email: ''});
           setPassword({password: ''});
